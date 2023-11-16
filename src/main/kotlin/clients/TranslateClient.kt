@@ -19,7 +19,4 @@ class TranslateClient(
         val translation = translate.translate(text, sourceLanguage, targetLanguage);
         return translation.translatedText
     }
-    fun listLanguages(): List<Language> {
-        return translate.listSupportedLanguages()
-    }
 }
