@@ -1,11 +1,11 @@
-package com.openphonics.data
+package com.openphonics.data.clients
 
 import com.google.cloud.texttospeech.v1.*
 import com.google.cloud.texttospeech.v1.TextToSpeechClient
 import java.io.FileOutputStream
 
 class TextToSpeechClient(
-    private val language: String = "en-US",
+    private val language: String,
     private val gender: SsmlVoiceGender = SsmlVoiceGender.NEUTRAL,
     private val textToSpeech: TextToSpeechClient = TextToSpeechClient.create(),
     private val audioConfig: AudioConfig = AudioConfig.newBuilder().setAudioEncoding(AudioEncoding.MP3).build(),

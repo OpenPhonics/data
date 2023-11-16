@@ -1,4 +1,4 @@
-package com.openphonics.data
+package com.openphonics.data.clients
 
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
@@ -22,9 +22,10 @@ class DictionaryClient {
     }
     suspend fun phonetic(word: String): String? = withContext(Dispatchers.IO) {
         return@withContext try {
-            val response = apiService.getWord(word).execute()
+            val response = apiService.getPhonetic(word).execute()
             if (response.isSuccessful) {
-                response.body()?.get(0)?.phonetic
+                val phonetic = response.body()?.get(0)?.phonetic
+                phonetic?.substring(1, phonetic.length - 1)
             } else {
                 null
             }
@@ -35,8 +36,8 @@ class DictionaryClient {
 }
 interface ApiService {
     @GET("{word}")
-    fun getWord(@Path("word") word: String): Call<List<Word>>
+    fun getPhonetic(@Path("word") word: String): Call<List<Phonetic>>
 }
-data class Word(
+data class Phonetic(
     @SerializedName("phonetic") val phonetic: String?
 )

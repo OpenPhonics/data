@@ -1,6 +1,7 @@
 plugins {
     application
     kotlin("jvm") version "1.9.20"
+    kotlin("plugin.serialization") version "1.5.21"
 }
 
 group = "com.openphonics.data"
@@ -27,7 +28,11 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     //Testing
     testImplementation(kotlin("test"))
+    //Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
+    //Data
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
+
 }
 
 tasks.test {
