@@ -9,7 +9,7 @@ import retrofit2.http.Path
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class DictionaryClient {
+object DictionaryClient {
     private val baseUrl = "https://api.dictionaryapi.dev/api/v2/entries/en/"
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
