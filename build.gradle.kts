@@ -27,6 +27,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     //Testing
     testImplementation(kotlin("test"))
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
 }
 
 tasks.test {
