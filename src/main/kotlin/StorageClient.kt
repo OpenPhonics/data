@@ -5,7 +5,7 @@ import com.google.cloud.storage.Storage
 import java.nio.file.Files
 import java.nio.file.Paths
 
-class Storage {
+class StorageClient {
     private val storage: Storage = StorageOptions.getDefaultInstance().service
     fun create(bucketName: String): Bucket {
         return storage.create(BucketInfo.of(bucketName))
