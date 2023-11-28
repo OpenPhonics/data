@@ -9,8 +9,8 @@ object StorageClient {
 
     private val storage: Storage = StorageOptions.getDefaultInstance().service
     private val contentType = "audio/mpeg"
-    fun createBucket(bucketName: String): String {
-        return storage.get(bucketName)?.name ?: storage.create(BucketInfo.of(bucketName)).name
+    fun createBucket(bucketName: String) {
+        storage.get(bucketName)?.name ?: storage.create(BucketInfo.of(bucketName)).name
     }
     fun uploadMp3(path: String, bucketName: String, blobName: String): String {
         val file = Paths.get(path)

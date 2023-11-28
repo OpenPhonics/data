@@ -1,10 +1,7 @@
 package com.openphonics.data.utils
 
 import com.openphonics.data.Word
-import java.io.BufferedWriter
-import java.io.File
-import java.io.FileWriter
-import java.io.IOException
+import java.io.*
 
 fun addHeader(filePath: String, columns: List<String>) {
     try {
@@ -20,7 +17,7 @@ fun addHeader(filePath: String, columns: List<String>) {
         e.printStackTrace()
     }
 }
-fun addWords(filePath: String, words: List<Word>) {
+fun saveWordsLocally(filePath: String, words: List<Word>) {
 
     try {
         // Create a BufferedWriter
@@ -40,6 +37,28 @@ fun addWords(filePath: String, words: List<Word>) {
     }
 }
 fun readWords(path: String): List<String>{
-    val lines = File(path).readLines()
-    return lines.flatMap { it.split("\\s+".toRegex()) }
+//    val lines = File(path).readLines()
+    return listOf("the",
+    "of",
+    "and",
+    "to",
+    "a",
+    "in",
+    "that",
+    "I",
+    "was",
+    "he")
+//    return lines.flatMap { it.split("\\s+".toRegex()) }
+}
+
+fun readCsv(file: String): List<Word> {
+    val inputStream = File(file).inputStream()
+    val reader = inputStream.bufferedReader()
+    val header = reader.readLine()
+    return reader.lineSequence()
+        .filter { it.isNotBlank() }
+        .map {
+            val (language, word, phonic, sound, id) = it.split(',', ignoreCase = false, limit = 5)
+            Word(language, word, phonic, sound, id.toInt())
+        }.toList()
 }
